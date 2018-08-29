@@ -1,0 +1,227 @@
+/* ***************************************************************** */
+/* LOCAL VARIABLES */
+/* ***************************************************************** */
+:root {
+    --width-A4: 21cm;
+    --height-A4: 29.7cm;
+    /* --background-normes-A4: url(assets/images/pages/normes.png); */
+    --background-normes-A4: url();
+}
+/* ***************************************************************** */
+/* BODY */
+/* ***************************************************************** */
+body {
+    -webkit-print-color-adjust: exact !important;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(150, 150, 150, 1); /* FOND GRIS */
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+/* ***************************************************************** */
+/* PAGE */
+/* ***************************************************************** */
+.page {
+    display: block;
+    background: white;
+    margin: 10mm auto; /* MARGE ENTRE LES FEUILLES, A ENLEVER DANS MEDIA PRINT */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    page-break-after: always;
+}
+.page[size="A4"] {
+    width: var(--width-A4);
+    min-width: var(--width-A4);
+    max-width: var(--width-A4);
+    height: var(--height-A4);
+    min-height: var(--height-A4);
+    max-height: var(--height-A4);
+    padding: 0mm; 
+    background-image: var(--background-normes-A4);
+}
+@page {
+    size: A4;
+    margin: 0;
+}
+/* ***************************************************************** */
+/* SUBPAGE */
+/* ***************************************************************** */
+.subpage {
+    text-align:center;
+}
+.subpage[size="A4"] {
+    padding: 1.5cm; /* DELIMITE LA PARTIE UTILISABLE DE LA FEUILLE */
+    width: var(--width-A4);
+    min-width: var(--width-A4);
+    max-width: var(--width-A4);
+    height: var(--height-A4);
+    min-height: var(--height-A4);
+    max-height: var(--height-A4);
+}
+
+/* ***************************************************************** */
+/* MEDIA PRINT OPTION */
+/* ***************************************************************** */
+@media print {
+    .page {
+        margin: 0cm;
+    }
+}
+    
+/* ***************************************************************** */
+/* CARD */
+/* ***************************************************************** */
+.card {
+    display       : inline-block;
+    vertical-align: top;
+    position      : relative;
+    margin        : -0.1mm -0.7mm;
+    padding       : 5mm; /* DELIMITE LA PARTIE UTILISABLE DE LA CARTE */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* border-radius : 10px; */
+}
+
+.card[type="gapped"] {
+    background-color: black;
+    --width : 9cm;
+    --height : 9cm;
+    width:  var(--width);
+    min-width: var(--width);
+    max-width: var(--width);
+    height:  var(--height);
+    min-height: var(--height);
+    max-height: var(--height);
+    border : 1px solid white;
+}
+.card[type="completion"] {
+    background-color: white;
+    --width : 9cm;
+    --height : 6.5cm;
+    width:  var(--width);
+    min-width: var(--width);
+    max-width: var(--width);
+    height:  var(--height);
+    min-height: var(--height);
+    max-height: var(--height);
+    border        : 1px solid black;
+}
+.card[side="back"] {
+    
+}
+
+/* ***************************************************************** */
+/* CARD FRONT  */
+/* ***************************************************************** */
+.card-front-content-container {
+    position  : absolute;
+    display: table;
+    width: 90%; /* width of parent */
+    height: 200px; /* height of parent */
+}
+
+.card-front-content-container[position="top"][type="gapped"]  {
+    top: 10mm;
+    left: 10mm;
+    --initial-height: 113px; /* 113px == 30mm */
+    width: 60mm; /* width of parent */
+    height: var(--initial-height); /* height of parent */
+}
+.card-front-content-container[position="middle"][type="gapped"]  {
+    top: 20mm;
+    left: 10mm;
+    --initial-height: 207px; /* 207px == 55mm */
+    width: 45mm; /* width of parent */
+    height: var(--initial-height); /* height of parent */
+}
+.card-front-content-container[position="bottom"][type="gapped"]  {
+    bottom: 10mm;
+    left: 10mm;
+    --initial-height: 113px; /* 113px == 30mm */
+    width: 60mm; /* width of parent */
+    height: var(--initial-height); /* height of parent * */
+}
+.card-front-content-container[position="top"][type="completion"]  {
+    top: 10mm;
+    left: 10mm;
+    --initial-height: 113px; /* 113px == 30mm */
+    width: 60mm; /* width of parent */
+    height: var(--initial-height); /* height of parent */
+}
+.card-front-content-container[position="middle"][type="completion"] {
+    top: 20mm;
+    left: 10mm;
+    --initial-height: 207px; /* 207px == 55mm */
+    width: 45mm; /* width of parent */
+    height: var(--initial-height); /* height of parent */
+}
+.card-front-content-container[position="bottom"][type="completion"]  {
+    bottom: 10mm;
+    left: 10mm;
+    --initial-height: 113px; /* 113px == 30mm */
+    width: 60mm; /* width of parent */
+    height: var(--initial-height); /* height of parent * */
+}
+
+.card-front-content {
+    position  : relative;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+}
+.card-front-content[type="gapped"] {
+    color: white;
+    font-size: 18.7px; /* 14pt; */
+    Line-Height: 1.5; /* 14pt; */
+    font-weight: bold;
+    font-family: 'Bitter', serif;
+}
+.card-front-content[type="completion"] {
+    color: black;
+    font-size: 20.3px; /* 14pt; */
+    
+    font-weight: bold;
+    font-family: 'Gaegu', cursive;
+}
+.card-front-footer-img-container {
+    position  : absolute;
+    width     : 50px;
+    bottom    : 20px;
+    left      : 50%;
+    transform : translateX(-50%);
+}
+.card-front-header-container {
+    position  : absolute;
+    width     : 90%;
+    top       : 10px;
+    left      : 50%;
+    transform : translateX(-50%);
+    color: white;
+}
+.card-front-header-left {
+    float:left;
+    width     :  20px;
+}
+/* ***************************************************************** */
+/* CARD BACK  */
+/* ***************************************************************** */
+.card-back-main-container {
+    position  : absolute;
+    width     : 120px;
+    bottom: 2cm;
+    left      : 50%;
+    transform : translateX(-50%);
+}
+
+.img-block {
+    display : block;
+    margin  : 0 auto;
+    width   : 100%;
+}
+
+
+
