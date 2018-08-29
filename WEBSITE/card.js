@@ -12,7 +12,7 @@ let templates = ['top', 'middle','bottom'];
 let images_names = {
 	gapped: {
 		random: {
-			top: ['1', '2', '3'],
+			top: ['QT_D-2', '2', '3'],
 			middle: ['1'],
 			bottom: ['1','2'],
 		},
